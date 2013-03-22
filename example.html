@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="example.css" />
+		<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+		<script src="jquery.dropdown.js"></script>
+		<script>
+			$(window).ready(function() {
+				$('.dropdown').dropdown(alert);
+			});
+		</script>
+	</head>
+	<body>
+		<div class="dropdown" tabindex="2">
+			<div class="dropdown-head"><span class="title" unselectable="on">-- Default Option --</span><span class="caret"></span></div>
+			<ul class="dropdown-body">
+				<li data-value="0" unselectable="on">First Value</li>
+				<li data-value="1" unselectable="on">Second Value</li>
+			</ul>
+		</div>
+	</body>
+</html>
