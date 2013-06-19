@@ -9,23 +9,23 @@
     $.fn.dropdown = function (callback) {
         var $dropdown = this,
             $body = $dropdown.find('.dropdown-body'),
-            open = function() { 
+            open = function () {
                 $dropdown.find('.dropdown-body li.hover').removeClass('hover');
                 $dropdown.addClass('open');
             },
-            close = function() {
+            close = function () {
                 $dropdown.removeClass('open');
             },
-            toggle = function() {
+            toggle = function () {
                 if ($dropdown.hasClass('open')) {
                     close();
                 } else {
                     open();
                 }
             };
-        
+
         // Navigate up/down and select with enter or exit with escape
-        $dropdown.keydown(function(event) {
+        $dropdown.keydown(function (event) {
             // esc, enter, up, down
             var keys = [27, 13, 38, 40];
             if ($.inArray(event.keyCode, keys) === -1)
@@ -77,20 +77,20 @@
                 $title.html($li.html());
                 toggle();
                 event.stopPropagation();
-                callback($li.attr('data-value'));
+                callback.call(this, $li.attr('data-value'));
             });
             $li.mousedown(function (event) { event.stopPropagation(); });
         });
-        
+
         // Hide dropdown body on click outside
         $('.dropdown .dropdown-head, .dropdown .dropdown-head .title, .dropdown .dropdown-head .caret').mousedown(function (event) {
             toggle();
             event.stopPropagation();
         });
-        
+
         // Hide dropdown body on click outside, but wait so that we can select stuff first
         // since explorer and firefox triggers mousedown in different orders
-        $('html').mousedown(function () {
+        $('body').mousedown(function () {
             setTimeout(function () { close() }, 50);
         });
     };
